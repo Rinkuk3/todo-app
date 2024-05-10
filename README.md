@@ -4,43 +4,57 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Available Scripts
 
-In the project directory, you can run:
+To run the Frontend containing the `TodoList` component, follow these steps:
 
-### `npm start`
+Note: Node.js should be installed on your system.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Setup Instructions:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+1. Clone the Repository:
+   git clone <>
 
-### `npm test`
+2. Navigate to the Directory
+  go to ToDo directory
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+3. Install Dependencies
+   Install the required dependencies using npm or yarn.
+   npm install
 
-### `npm run build`
+4. Start the Development Server:
+   Start the development server to run the application locally.
+   npm start or yarn start
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+5. Access the Application:
+   Once the development server is running, you can access the Application in your browser by navigating to the provided URL (usually `http://localhost:3000` by default).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Packaging Instructions:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+If you want to package the application for deployment or distribution, you can do it with a build command.
 
-### `npm run eject`
+For example, 
+npm run build or yarn build
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+This command generates a production build of the application in the `build` directory, which can then be deployed to a web server.
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Overview of Design and Architectural Choices
+1. The app is divided into several components such as App, TodoList, TodoInput, and TodoItem for better organization and reusability.
+2. App is the main component that holds the state of the todo list and manages adding, toggling, and filtering todos.
+3. TodoList component renders the list of todos and passes down necessary props to child components.
+4. TodoInput component handles user input for adding new todos.
+5. TodoItem component represents each individual todo item in the list.
+6. React useState hook is utilized for managing component-level state such as todos and filter.
+7. localStorage is used to persist todos across page reloads, ensuring data persistence.
+8. Adding Todos: Users can add new todos by typing into the input field and pressing the "Add" button.
+9. Toggling Todos: Todos can be marked as completed or active by clicking on the checkbox beside each todo item.
+10. Filtering Todos: Users can filter todos based on their completion status (All, Active, Completed).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+What happens if localStorage is unavailable, or there’s invalid input?
+
+If localStorage is unavailable due to browser settings or browser compatibility issues:
+One approach is to provide a fallback mechanism, such as using in-memory storage or notifying the user about the unavailability of persistent storage.
+or 
+Log errors related to localStorage access for debugging purposes, which can help in diagnosing issues and troubleshooting.
+For invalid input:
+Provide feedback to the user when invalid input is detected. This could include displaying error messages, highlighting the input fields with invalid data, or disabling the action associated with invalid input until it's corrected

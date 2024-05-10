@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect } from 'react';
+import TodoList from './ToDo/TodoList';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+enum Filter {
+  All,
+  Active,
+  Completed,
 }
+
+const App: React.FC = () => {
+  const [todos, setTodos] = useState<{ id: number; text: string; completed: boolean }[]>([]);
+  const [filter, setFilter] = useState(Filter.All);
+
+  useEffect(() => {
+    const storedTodos = JSON.parse(localStorage.getItem('todos') || '[]');
+    setTodos(storedTodos);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
+
+  const addTodo = (text: string) => {
+    const newTodo = { id: Date.now(), text, completed: false };
+    setTodos([...todos, newTodo]);
+  };
+
+  const toggleTodo = (id: number) => {
+    setTodos(
+      todos.map(todo =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  };
+
+  return (
+    <div>
+        <TodoList 
+          todos={todos}
+          addTodo={addTodo}
+          toggleTodo={toggleTodo}
+          filter={filter}
+          setFilter={setFilter} />
+      </div>
+  );
+};
 
 export default App;
