@@ -11,7 +11,7 @@ Note: Node.js should be installed on your system.
 Setup Instructions:
 
 1. Clone the Repository:
-   git clone <>
+   git clone <https://github.com/Rinkuk3/todo-app.git>
 
 2. Navigate to the Directory
   go to ToDo directory
